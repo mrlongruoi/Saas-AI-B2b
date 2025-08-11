@@ -106,70 +106,85 @@ export const DashboardSidebar = () => {
                 {/* customer support */}
                 <SidebarGroup>
                     <SidebarGroupLabel>Hỗ trợ khách hàng</SidebarGroupLabel>
-                    <SidebarMenu>
-                        {customerSupportItems.map((item) => (
-                            <SidebarMenuItem key={item.title}>
-                                <SidebarMenuButton
-                                    asChild
-                                    isActive={isActive(item.url)}
-                                    tooltip={item.title}
-                                >
-                                    <Link
-                                        href={item.url}
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                            {customerSupportItems.map((item) => (
+                                <SidebarMenuItem key={item.title}>
+                                    <SidebarMenuButton
+                                        asChild
+                                        isActive={isActive(item.url)}
+                                        className={cn(
+                                            isActive(item.url) && "bg-gradient-to-b from-sidebar-primary to-[#0b63f3]! text-sidebar-primary-foreground! hover:to-[#0b63f3]/90"
+                                        )}
+                                        tooltip={item.title}
                                     >
-                                        <item.icon className="size-4" />
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
-                        ))}
-                    </SidebarMenu>
+                                        <Link
+                                            href={item.url}
+                                        >
+                                            <item.icon className="size-4" />
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            ))}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
                 </SidebarGroup>
 
                 {/* configuration */}
                 <SidebarGroup>
                     <SidebarGroupLabel>Cấu hình</SidebarGroupLabel>
-                    <SidebarMenu>
-                        {configurationItems.map((item) => (
-                            <SidebarMenuItem key={item.title}>
-                                <SidebarMenuButton
-                                    asChild
-                                    isActive={isActive(item.url)}
-                                    tooltip={item.title}
-                                >
-                                    <Link
-                                        href={item.url}
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                            {configurationItems.map((item) => (
+                                <SidebarMenuItem key={item.title}>
+                                    <SidebarMenuButton
+                                        asChild
+                                        isActive={isActive(item.url)}
+                                        className={cn(
+                                            isActive(item.url) && "bg-gradient-to-b from-sidebar-primary to-[#0b63f3]! text-sidebar-primary-foreground! hover:to-[#0b63f3]/90"
+                                        )}
+                                        tooltip={item.title}
                                     >
-                                        <item.icon className="size-4" />
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
-                        ))}
-                    </SidebarMenu>
+                                        <Link
+                                            href={item.url}
+                                        >
+                                            <item.icon className="size-4" />
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            ))}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
                 </SidebarGroup>
 
                 {/* account */}
                 <SidebarGroup>
                     <SidebarGroupLabel>Tài khoản</SidebarGroupLabel>
-                    <SidebarMenu>
-                        {accountItems.map((item) => (
-                            <SidebarMenuItem key={item.title}>
-                                <SidebarMenuButton
-                                    asChild
-                                    isActive={isActive(item.url)}
-                                    tooltip={item.title}
-                                >
-                                    <Link
-                                        href={item.url}
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                            {accountItems.map((item) => (
+                                <SidebarMenuItem key={item.title}>
+                                    <SidebarMenuButton
+                                        asChild
+                                        isActive={isActive(item.url)}
+                                        className={cn(
+                                            isActive(item.url) && "bg-gradient-to-b from-sidebar-primary to-[#0b63f3]! text-sidebar-primary-foreground! hover:to-[#0b63f3]/90"
+                                        )}                                        
+                                        tooltip={item.title}
                                     >
-                                        <item.icon className="size-4" />
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
-                        ))}
-                    </SidebarMenu>
+                                        <Link
+                                            href={item.url}
+                                        >
+                                            <item.icon className="size-4" />
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            ))}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
             <SidebarFooter>
