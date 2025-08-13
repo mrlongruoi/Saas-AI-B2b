@@ -1,5 +1,8 @@
+import { saveMessage } from "@convex-dev/agent";
 import { ConvexError, v } from "convex/values";
 import { mutation, query } from "../_generated/server";
+import { supportAgent } from "../system/ai/agents/supportAgent";
+import { components } from "../_generated/api";
 
 export const getOne = query({
   args: {
@@ -8,10 +11,11 @@ export const getOne = query({
   },
   handler: async (ctx, args) => {
     const session = await ctx.db.get(args.contactSessionId);
+
     if (!session || session.expiresAt < Date.now()) {
       throw new ConvexError({
-        code: "UNAUTHORIZED",
-        message: "Phiên không hợp lệ",
+        code: "NOT_FOUND",
+        message: "Cuộc trò chuyện không tìm thấy",
       });
     }
 
@@ -19,6 +23,13 @@ export const getOne = query({
 
     if (!conversation) {
       return null;
+    }
+
+    if (conversation.constactSessionId !== session._id) {
+      throw new ConvexError({
+        code: "UNAUTHORIZED",
+        message: "Phiên không chính xác",
+      });
     }
 
     return {
@@ -43,7 +54,17 @@ export const create = mutation({
       });
     }
 
-    const threadId = "123";
+    const { threadId } = await supportAgent.createThread(ctx, {
+      userId: args.organizationId,
+    });
+
+    await saveMessage(ctx, components.agent, {
+      threadId,
+      message: {
+        role: "assistant",
+        content: "Xin chào, Làm thế nào tôi có thể giúp bạn hôm nay?",
+      },
+    });
 
     const conversationId = await ctx.db.insert("conversations", {
       constactSessionId: session._id,
